@@ -1,16 +1,29 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+import { Loader } from "./Loader/Loader";
+import { Modal } from 'components/Modal/Modal';
+import {Appstyle} from './App.styled'
+import { Searchbar } from "./Searchbar/Searchbar";
+import React, { Component } from "react";
+
+
+export class App extends Component {
+  state = {
+    
+  }
+
+  onClick = () => {
+    
+    
+  }
+  render(){
+     return (
+       <Appstyle>
+         <Searchbar onClick={this.onClick} />
+         <Loader />
+         <Modal />
+       </Appstyle>
+     );
+  }
+   
+    
+
 };
