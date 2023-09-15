@@ -1,12 +1,20 @@
-import {ImageGalleryItem} from '../ImageGalleryItem/ImageGalleryItem'
+import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem'
+import React from 'react';
+import {ImageEl} from 'components/ImageGallery/ImageGallery.styled'
 
-export const ImageGallery = () => {
+export const ImageGallery = ({ images }) => {
 
-    return (
-    <ul class="gallery">
-<ImageGalleryItem/>
-</ul>
-
-)
-
-}
+  
+  return (
+    <ImageEl>
+      {images.map(({ id, webformatURL, tags, largeImageURL }) => (
+        <ImageGalleryItem
+          key={id}
+          previewImg={webformatURL}
+          tags={tags}
+       
+        />
+      ))}
+    </ImageEl>
+  );
+};
