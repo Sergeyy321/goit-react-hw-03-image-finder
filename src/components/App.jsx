@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Loader } from './Loader/Loader';
 import { Button } from './Button/Button';
-import { fetchGallery } from './Api';
+import fetchGallery  from './Api';
 axios.defaults.baseURL = "https://pixabay.com/api"
 export class App extends Component {
   state = {
@@ -18,19 +18,17 @@ export class App extends Component {
     error: null,
     selectedImage: null,
     alt: null,
-    showModal:false,
+    showModal: false,
   };
   totalHits = null;
 
-  
-  
   async componentDidUpdate(_, prevState) {
     const { page, name } = this.state;
     if (prevState.name !== name || prevState.page !== page) {
       this.setState({ loading: 'pending' });
-      
+
       try {
-        const imageData = await fetchGallery(page, name);
+        const imageData = await fetchGallery(name, page);
         this.totalHits = imageData.total;
         const imagesHits = imageData.hits;
         if (!imagesHits.length) {
@@ -40,7 +38,7 @@ export class App extends Component {
           images: [...images, ...imagesHits],
           loading: 'resolved',
         }));
-        
+
         if (page > 1) {
           const CARD_HEIGHT = 300;
           window.scrollBy({
@@ -62,14 +60,13 @@ export class App extends Component {
       selectedImage: null,
       alt: null,
       loading: 'idle',
-      showModal:false,
     });
   };
   onFormSubmit = name => {
     if (this.state.name === name) {
       return;
     }
-    
+    this.reset();
     this.setState({ name });
   };
 
@@ -78,7 +75,6 @@ export class App extends Component {
       selectedImage: null,
       showModal: false,
     });
-    
   };
   onLoadMore = () => {
     this.setState(prevState => ({
@@ -89,10 +85,7 @@ export class App extends Component {
     this.setState({
       selectedImage: largeImageUrl,
       alt: tags,
-      showModal: true,
     });
-   
-    
   };
 
   render() {
@@ -101,14 +94,14 @@ export class App extends Component {
       <Appstyle>
         <Searchbar onSubmit={this.onFormSubmit} />
         {loading === 'pending' && <Loader />}
-
+        {error && <h1>{error.message}</h1>}
         {images.length > 0 && (
-          <ImageGallery selectedImage={this.onSelectedImage} images={images} />
+          <ImageGallery images={images} selectedImage={this.onSelectedImage} />
         )}
         {images.length > 0 && images.length !== this.totalHits && (
           <Button onLoadMore={this.onLoadMore} />
         )}
-        {error && <h1>{error.message}</h1>}
+
         {selectedImage && (
           <Modal
             onModalClose={this.onModalClose}

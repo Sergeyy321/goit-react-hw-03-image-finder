@@ -1,9 +1,15 @@
 import { Component } from 'react';
 import { Modalstyle, Overlay } from 'components/Modal/Modal.styled'
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 const modalRoot = document.querySelector('#modal-root');
 
 export default class Modal extends Component {
+  static propTypes = {
+    selectedImage: PropTypes.string,
+    tags: PropTypes.string,
+    onClose: PropTypes.func,
+  };
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
   }
@@ -23,10 +29,11 @@ export default class Modal extends Component {
     }
   };
   render() {
+       const { selectedImage, tags } = this.props;
     return createPortal(
       <Overlay onClick={this.onBackdropClick}>
         <Modalstyle>
-          <img src={this.props.selectedImage} alt={this.props.tags} />
+          <img src={selectedImage} alt={tags} />
         </Modalstyle>
       </Overlay>,
       modalRoot
