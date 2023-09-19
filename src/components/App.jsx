@@ -18,7 +18,7 @@ export class App extends Component {
     error: null,
     selectedImage: null,
     alt: null,
-    showModal: false,
+  
   };
   totalHits = null;
 
