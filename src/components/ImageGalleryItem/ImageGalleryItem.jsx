@@ -1,6 +1,6 @@
 import {
   Image,
-  GalleryItem,
+  
 } from 'components/ImageGalleryItem/ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ tags, previewImg, onSelectedImage }) => {
