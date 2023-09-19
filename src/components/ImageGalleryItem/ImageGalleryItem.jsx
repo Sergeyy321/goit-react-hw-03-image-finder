@@ -1,9 +1,13 @@
-import {Image} from 'components/ImageGalleryItem/ImageGalleryItem.styled'
+import {
+  Image,
+ 
+} from 'components/ImageGalleryItem/ImageGalleryItem.styled';
 
-export const ImageGalleryItem = ({ tags, previewImg, onModalClick }) => {
+export const ImageGalleryItem = ({ tags, previewImg, onSelectedImage }) => {
   return (
     <li>
-      <Image src={previewImg} alt={tags} onClick={onModalClick} />
+      <Image src={previewImg} alt={tags} onClick={onSelectedImage} />
     </li>
   );
-};
+}
+ 

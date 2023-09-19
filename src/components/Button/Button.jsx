@@ -1,12 +1,12 @@
 
-
+import {ButtonStyled } from 'components/Button/Button.styled'
 
 export const Button = ({ onLoadMore }) => {
   return (
     <div>
-      <button type="button" onClick={onLoadMore}>
+      <ButtonStyled type="button" onClick={onLoadMore}>
         Load more
-      </button>
+      </ButtonStyled>
     </div>
   );
 };
