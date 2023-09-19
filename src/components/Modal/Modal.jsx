@@ -13,13 +13,13 @@ export default class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
     document.body.style.overflow = 'hidden';
-  }
+  
   }
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
     document.body.style.overflow = 'visible';
-  }
+  
   }
 
   onBackdropClick = el => {
