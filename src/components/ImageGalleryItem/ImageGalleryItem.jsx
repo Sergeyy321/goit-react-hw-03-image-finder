@@ -1,12 +1,12 @@
 import {
   Image,
-  
+  GalleryItem,
 } from 'components/ImageGalleryItem/ImageGalleryItem.styled';
 
-export const ImageGalleryItem = ({ tags, previewImg, onSelectedImage }) => {
+export const ImageGalleryItem = ({ tags, previewImg, selectedImage }) => {
   return (
-    <li>
-      <Image src={previewImg} alt={tags} onClick={onSelectedImage} />
-    </li>
+    <GalleryItem>
+      <Image src={previewImg} alt={tags} onClick={selectedImage} />
+    </GalleryItem>
   );
 };

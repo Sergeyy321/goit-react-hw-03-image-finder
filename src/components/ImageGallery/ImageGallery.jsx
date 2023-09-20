@@ -10,7 +10,7 @@ export const ImageGallery = ({ images, selectedImage }) => {
           key={id}
           previewImg={webformatURL}
           tags={tags}
-          selectedImage={() => selectedImage(largeImageURL, tags)}
+          selectedImage={() => selectedImage(largeImageURL,tags)}
         />
       ))}
     </ImageEl>
